@@ -9,11 +9,16 @@ A helper library written in PHP for handling Satchmo form submissions.
 		try {
 			# Create a new upload descriptor for our uploaded file.
 			$upload = new Satchmo\Upload\ArrayUploadDescriptor($_FILES["file"]);
+			
 			# Create a new upload store, which temporarily stores the uploads in `data/`.
 			$store = new Satchmo\Upload\SessionUploadStore("data");
-			# Store our upload in the store.
+			
+			# Store our upload in the store. `$key` can be used in subsequent to use the uploaded file. Don't forget to
+			# `destroy()` the descriptor!
 			$key = $store->store($upload);
 		} catch(Exception $e) {
+			# Gotta catch 'em all!
+
 			# If no file was selected, an exception is sent to the browser.
 			header("HTTP/1.1 500 Internal Server Error");
 			header("Content-Type: application/json");
