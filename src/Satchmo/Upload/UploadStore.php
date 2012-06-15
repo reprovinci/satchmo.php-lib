@@ -9,13 +9,13 @@ namespace Satchmo\Upload;
 interface UploadStore
 {
 	/**
-	 * Destroys all uploads old than the given age in seconds.
+	 * Destroys all uploads created before `$date`.
 	 *
-	 * @param int $age Age in seconds.
+	 * @param int $date
 	 * @return boolean Returns `true` when all expired uploads were succesfully removed, `false` when some failed to be
 	 *                 removed.
 	 */
-	public function clean($age);
+	public function clean($date);
 
 	/**
 	 * Destroy an upload.

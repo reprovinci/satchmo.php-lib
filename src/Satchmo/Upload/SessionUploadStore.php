@@ -28,7 +28,7 @@ class SessionUploadStore implements UploadStore
 		$this->namespace = "satchmo-store://$directory";
 	}
 
-	public function clean($age)
+	public function clean($date)
 	{
 		$now = time();
 		$success = true;
@@ -36,7 +36,7 @@ class SessionUploadStore implements UploadStore
 		$files = glob("{$this->directory}/".self::FILE_NS."*");
 		$start = strlen(self::FILE_NS);
 		foreach ($files as $file) {
-			if($now - filemtime($file) < $age)
+			if(filemtime($file) < $date)
 				continue;
 
 			$key = substr($file, $start);
