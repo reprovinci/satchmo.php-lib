@@ -23,6 +23,11 @@ interface UploadDescriptor
 	public function getFilename();
 
 	/**
+	 * @return int
+	 */
+	function getFileSize();
+
+	/**
 	 * Returns the file's current location on disk.
 	 *
 	 * @return string

@@ -79,6 +79,17 @@ class ArrayUploadDescriptor implements UploadDescriptor
 		return $this->filename;
 	}
 
+	/**
+	 * @return int
+	 */
+	public function getFileSize()
+	{
+		$location = $this->getLocation();
+		$info = new \SplFileInfo($location);
+
+		return $info->getSize();
+	}
+
 	public function getLocation()
 	{
 		return $this->location;
