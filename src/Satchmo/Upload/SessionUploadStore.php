@@ -35,7 +35,7 @@ class SessionUploadStore implements UploadStore
 		$files = glob("{$this->directory}/".self::FILE_NS."*");
 		$start = strlen(self::FILE_NS);
 		foreach ($files as $file) {
-			if(filemtime($file) < $date)
+			if(filemtime($file) > $date)
 				continue;
 
 			$key = substr($file, $start);
