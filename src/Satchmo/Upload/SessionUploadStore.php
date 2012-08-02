@@ -38,7 +38,7 @@ class SessionUploadStore implements UploadStore
 			if(filemtime($file) > $date)
 				continue;
 
-			$key = substr($file, $start);
+			$key = substr(basename($file), $start, 32);
 			try {
 				$this->destroy($key);
 			} catch(FileNotWritableException $e) {
