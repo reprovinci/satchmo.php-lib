@@ -84,6 +84,11 @@ class SessionUploadStore implements UploadStore
 		$key = md5($descriptor->getFilename().uniqid());
 		$key_file = "{$this->directory}/".self::FILE_NS.$key;
 		
+		$extension = end(explode(".", basename($descriptor->getFilename())));
+		if ($extension) {
+			$key_file .= ".$extension";
+		}
+
 		$descriptor->moveFile($key_file);
 		$_SESSION[$this->namespace][$key] = $descriptor;
 
