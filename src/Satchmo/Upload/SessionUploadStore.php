@@ -30,7 +30,6 @@ class SessionUploadStore implements UploadStore
 
 	public function clean($date)
 	{
-		$now = time();
 		$success = true;
 
 		$files = glob("{$this->directory}/".self::FILE_NS."*");
