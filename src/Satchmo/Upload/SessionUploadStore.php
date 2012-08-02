@@ -40,7 +40,11 @@ class SessionUploadStore implements UploadStore
 
 			$key = substr(basename($file), $start, 32);
 			try {
-				$this->destroy($key);
+				if (!$this->destroy($key)) {
+					if (is_writable(dirname($file))) {
+						unlink($file);
+					}
+				}
 			} catch(FileNotWritableException $e) {
 				$success = false;
 			}
